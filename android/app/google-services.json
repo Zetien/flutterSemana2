@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "833248050001",
+    "project_id": "flutterzetienapp",
+    "storage_bucket": "flutterzetienapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833248050001:android:60b1a86a36471699b37170",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_listas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833248050001-11484v04gcre80e4btnj0en0tkoj84jl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8kvO4pMSa2lVC2aZ5krkT7SYFc-UfS5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833248050001-11484v04gcre80e4btnj0en0tkoj84jl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
