@@ -14,13 +14,19 @@ class CallFirebase extends StatefulWidget {
 }
 void openAlertDialog(BuildContext context, Registros registros) {
     AlertDialog alert =
-        AlertDialog(title: Text(registros.nombre!+' '+registros.apellido!), content: Column(
-          children: [
-            Image(
-            image: NetworkImage(registros.image!),
+        AlertDialog(title: Text(registros.nombre!+' '+registros.apellido!), content: Container(
+          height: 280,
+          child: Column(
+            //fit: StackFit.expand,
+            children: [
+              Image(
+              
+              image: NetworkImage(registros.image!),
+              fit: BoxFit.cover,
+            ),
+              Text(registros.carro.toString()+'\n\n'+registros.servicio.toString()),
+            ],
           ),
-            Text(registros.carro.toString()+'\n\n'+registros.servicio.toString()),
-          ],
         ), actions: [
       TextButton(
         onPressed: () => Navigator.pop(context),
@@ -38,7 +44,7 @@ class _CallFirebaseState extends State<CallFirebase> {
     callDatabase();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Zetien's Favorite Games"),
+        title: const Text("Zetien's Car Wash Client List"),
         centerTitle: true,
       ),
       body: Center(
