@@ -1,7 +1,7 @@
 class Carro{
   final String? color;
   final String? marca;
-  final String? modelo;
+  final int? modelo;
   final String? placa;
 
   Carro({
@@ -18,6 +18,11 @@ class Carro{
       modelo: json['modelo'],
       placa: json['placa'],
     );
+  }
+
+  @override
+  String toString() {
+    return 'Carro color: $color, marca: $marca, modelo: $modelo, placa: $placa';
   }
 
   /*   Map<String, dynamic> toJson() {

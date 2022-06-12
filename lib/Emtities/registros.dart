@@ -22,14 +22,18 @@ class Registros {
 
   factory Registros.fromJson(Map<String, dynamic> json) {
     return Registros(
-      carro: json['carro'] != null ? Carro.fromJson(json['carro']) : null,
+      carro: json['Carro'] != null ? Carro.fromJson(json['Carro']) : null,
       servicio:
-          json['servicio'] != null ? Servicio.fromJson(json['servicio']) : null,
+          json['Servicio'] != null ? Servicio.fromJson(json['Servicio']) : null,
       apellido: json['apellido'],
       cel: json['cel'],
       licencia: json['licencia'],
       nombre: json['nombre'],
       image: json['image'],
     );
+  }
+  @override
+  String toString() {
+    return 'Registros{carro: $carro, servicio: $servicio, apellido: $apellido, cel: $cel, image: $image, licencia: $licencia, nombre: $nombre}';
   }
 }

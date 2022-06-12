@@ -1,41 +1,77 @@
+import 'dart:convert';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_listas/domain/firebase_connection.dart';
 
-class CallFirebase extends StatelessWidget {
+import '../Emtities/registros.dart';
+
+class CallFirebase extends StatefulWidget {
   const CallFirebase({Key? key}) : super(key: key);
 
   @override
+  State<CallFirebase> createState() => _CallFirebaseState();
+}
+void openAlertDialog(BuildContext context, Registros registros) {
+    AlertDialog alert =
+        AlertDialog(title: Text(registros.nombre!+' '+registros.apellido!), content: Column(
+          children: [
+            Image(
+            image: NetworkImage(registros.image!),
+          ),
+            Text(registros.carro.toString()+'\n\n'+registros.servicio.toString()),
+          ],
+        ), actions: [
+      TextButton(
+        onPressed: () => Navigator.pop(context),
+        child: const Text('OK'),
+      )
+    ]);
+    showDialog(context: context, builder: (BuildContext context) => alert);
+  }
+
+class _CallFirebaseState extends State<CallFirebase> {
+  final firebaseConnection = FirebaseConnection();
+  List<Registros> registros=[];
+   @override
   Widget build(BuildContext context) {
     callDatabase();
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: const Text('Hello World'),
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Zetien's Favorite Games"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: _createList(),
       ),
     );
   }
 
-  void callDatabase() {
-    //FirebaseDatabase database = FirebaseDatabase.instance.ref();
-    //DatabaseReference refe = FirebaseDatabase.instance.ref();
+  Widget _createList() {
+    return ListView.builder(
+      itemCount: registros.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ListTile(
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(registros[index].image!),
+          ),
+          title: Text(registros[index].nombre!+' '+registros[index].apellido!),
+          onTap: () {
+            openAlertDialog(context, registros[index]);
+          },
+        );
+      },
+    );
+  }
+ 
 
-    DatabaseReference starCountRef =
-        FirebaseDatabase.instance.ref('Registros');
-    starCountRef.onValue.listen((event) {
-      final data = event.snapshot.value;
-      print(data.toString());
-    });
-
-    //final reg = FirebaseDatabase.instance.ref();
-    //final obj = reg.child('Registros/0').get();
-    //print(obj);
+  void callDatabase()async {
+    final respuestas = await firebaseConnection.getAllRegistros();
+    if(registros.length==0){
+      setState(() {
+        registros=respuestas.registros!;
+      });
+    }
 
   }
 }
