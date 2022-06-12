@@ -27,14 +27,15 @@ class CallFirebase extends StatelessWidget {
     //DatabaseReference refe = FirebaseDatabase.instance.ref();
 
     DatabaseReference starCountRef =
-        FirebaseDatabase.instance.ref('/Registros');
+        FirebaseDatabase.instance.ref('Registros');
     starCountRef.onValue.listen((event) {
       final data = event.snapshot.value;
       print(data.toString());
     });
 
     //final reg = FirebaseDatabase.instance.ref();
-    //final obj = reg.child('Registros/').get();
+    //final obj = reg.child('Registros/0').get();
     //print(obj);
+
   }
 }

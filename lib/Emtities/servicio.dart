@@ -1,17 +1,17 @@
-class Servicios {
+class Servicio {
   
   final String? lavado;
   final String? polish;
   final String? tapiceria;
 
-  Servicios({
+  Servicio({
     this.lavado,
     this.polish,
     this.tapiceria,
   });
 
-  factory Servicios.fromJson(Map<String, dynamic> json) {
-    return Servicios(
+  factory Servicio.fromJson(Map<String, dynamic> json) {
+    return Servicio(
       lavado: json['lavado'],
       polish: json['polish'],
       tapiceria: json['tapiceria'],
