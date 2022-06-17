@@ -12,34 +12,38 @@ class CallFirebase extends StatefulWidget {
   @override
   State<CallFirebase> createState() => _CallFirebaseState();
 }
+
 void openAlertDialog(BuildContext context, Registros registros) {
-    AlertDialog alert =
-        AlertDialog(title: Text(registros.nombre!+' '+registros.apellido!), content: Container(
-          height: 280,
-          child: Column(
-            //fit: StackFit.expand,
-            children: [
-              Image(
-              
+  AlertDialog alert = AlertDialog(
+      title: Text(registros.nombre! + ' ' + registros.apellido!),
+      content: Container(
+        height: 280,
+        child: Column(
+          //fit: StackFit.expand,
+          children: [
+            Image(
               image: NetworkImage(registros.image!),
               fit: BoxFit.cover,
             ),
-              Text(registros.carro.toString()+'\n\n'+registros.servicio.toString()),
-            ],
-          ),
-        ), actions: [
-      TextButton(
-        onPressed: () => Navigator.pop(context),
-        child: const Text('OK'),
-      )
-    ]);
-    showDialog(context: context, builder: (BuildContext context) => alert);
-  }
+            Text(registros.carro.toString() +
+                '\n\n' +
+                registros.servicio.toString()),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('OK'),
+        )
+      ]);
+  showDialog(context: context, builder: (BuildContext context) => alert);
+}
 
 class _CallFirebaseState extends State<CallFirebase> {
   final firebaseConnection = FirebaseConnection();
-  List<Registros> registros=[];
-   @override
+  List<Registros> registros = [];
+  @override
   Widget build(BuildContext context) {
     callDatabase();
     return Scaffold(
@@ -61,7 +65,8 @@ class _CallFirebaseState extends State<CallFirebase> {
           leading: CircleAvatar(
             backgroundImage: NetworkImage(registros[index].image!),
           ),
-          title: Text(registros[index].nombre!+' '+registros[index].apellido!),
+          title:
+              Text(registros[index].nombre! + ' ' + registros[index].apellido!),
           onTap: () {
             openAlertDialog(context, registros[index]);
           },
@@ -69,15 +74,14 @@ class _CallFirebaseState extends State<CallFirebase> {
       },
     );
   }
- 
 
-  void callDatabase()async {
+  void callDatabase() async {
     final respuestas = await firebaseConnection.getAllRegistros();
-    if(registros.length==0){
+    if (registros.length == 0) {
       setState(() {
-        registros=respuestas.registros!;
+        registros = respuestas.registros!;
       });
     }
-
   }
 }
+

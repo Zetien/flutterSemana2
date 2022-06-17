@@ -19,14 +19,11 @@ class ListView2 extends StatelessWidget {
           'https://media.vandal.net/i/1200x630/11-2021/2021111012201145_1.jpg',
       "name": 'Forza Horizon 5',
     },
-    
     {
       "image":
           'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
       "name": 'Halo Infinite',
     },
-    
-        
   ];
 
   void openAlertDialog(BuildContext context, String info) {
@@ -57,7 +54,36 @@ class ListView2 extends StatelessWidget {
     return ListView.builder(
       itemCount: _games.length,
       itemBuilder: (BuildContext context, int index) {
-        return ListTile(
+        return CustomCard(_games[index]);
+      },
+    );
+  }
+}
+
+class CustomCard extends StatelessWidget {
+  CustomCard(Map<String, dynamic> _games, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Card(
+        elevation: 2,
+        color: Color.fromARGB(232, 95, 146, 213),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        child: SizedBox(
+          height: 120,
+          width: 360,
+          child: Center(child: Text('Clean Card')),
+        ),
+      ),
+    );
+  }
+}
+
+
+/* ListTile(
           leading: CircleAvatar(
             backgroundImage: NetworkImage(_games[index]['image']!),
           ),
@@ -65,8 +91,4 @@ class ListView2 extends StatelessWidget {
           onTap: () {
             openAlertDialog(context, _games[index]['name']);
           },
-        );
-      },
-    );
-  }
-}
+        ); */
