@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_listas/views/lista_firebase.dart';
+import 'package:flutter_application_listas/views/profile.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -19,10 +20,7 @@ class _MenuState extends State<Menu> {
       style: optionStyle,
     ),
     CallFirebase(),
-    Text(
-      'Index 2: Profile',
-      style: optionStyle,
-    ),
+    ProfileScreen(),
     Text(
       'Index 2: Settings',
       style: optionStyle,
