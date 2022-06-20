@@ -54,18 +54,25 @@ class ListView2 extends StatelessWidget {
     return ListView.builder(
       itemCount: _games.length,
       itemBuilder: (BuildContext context, int index) {
-        return CustomCard(_games[index]);
+        return GestureDetector(
+          onTap: () {
+            openAlertDialog(context, _games[index]['name']);
+          },
+          child: CustomCard(_games[index]["name"], _games[index]["image"]),
+        );
       },
     );
   }
 }
 
 class CustomCard extends StatelessWidget {
-  CustomCard(Map<String, dynamic> _games, {Key? key}) : super(key: key);
+  final String name;
+  final String image;
+  const CustomCard(this.name, this.image, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Card(
         elevation: 2,
         color: Color.fromARGB(232, 95, 146, 213),
@@ -73,15 +80,28 @@ class CustomCard extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         child: SizedBox(
-          height: 120,
+          height: 60,
           width: 360,
-          child: Center(child: Text('Clean Card')),
+          child: Container(
+            child: Row(
+              children: <Widget>[
+                Padding(padding: const EdgeInsets.only(left: 5)),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(image),
+                ),
+                Padding(padding: const EdgeInsets.all(5)),
+                Text(
+                  name,
+                  style: const TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
-
 
 /* ListTile(
           leading: CircleAvatar(
