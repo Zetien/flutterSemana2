@@ -22,6 +22,6 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'material app',
-        home: ListView2());
+        home: Splash());
   }
 }
